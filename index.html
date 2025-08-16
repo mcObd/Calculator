@@ -1,147 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <link rel="stylesheet" href="./css/calculatorstyles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Simple Calculator | McQuendie</title>
+  <meta name="title" content="Simple Calculator | McQuendie">
+  <meta name="description" content="A beautiful, responsive calculator with modern design and smooth animations. Built with HTML and CSS for optimal performance.">
+  <meta name="keywords" content="calculator, web calculator, responsive calculator, HTML calculator, CSS calculator, mcquendie, web development, frontend design">
+  <meta name="author" content="McQuendie">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-domain.com/calculator">
+  <meta property="og:title" content="Simple Calculator | McQuendie">
+  <meta property="og:description" content="A beautiful, responsive calculator with modern design and smooth animations.">
+  <meta property="og:image" content="https://your-domain.com/calculator-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://your-domain.com/calculator">
+  <meta name="twitter:title" content="Simple Calculator | McQuendie">
+  <meta name="twitter:description" content="A beautiful, responsive calculator with modern design and smooth animations.">
+  <meta name="twitter:image" content="https://your-domain.com/calculator-preview.jpg">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://your-domain.com/calculator">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Simple Calculator",
+    "description": "A beautiful, responsive calculator with modern design",
+    "author": {
+      "@type": "Person",
+      "name": "McQuendie"
+    },
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "url": "https://your-domain.com/calculator"
+  }
+  </script>
 </head>
 <body>
-    <div class="wrapper">
-        <section class="screen">
-            0
-        </section>
-
-        <section class="btn-wrapper">
-                <table>
-                    <tr>
-                        <td colspan="2">
-                            <submit href="">C</submit>
-                        </td>
-                        <td>
-                            <submit class="arrow"
-                             href="">
-                                <span>&#8592;</span>
-                            </submit>
-                        </td>
-                        <td class="orange">
-                            <submit class="white"
-                            href="">
-                                <span>&#247;</span>
-                        </submit>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <submit href="">7</submit>
-                        </td>
-                        <td>
-                            <submit href="">8</submit>
-                        </td>
-                        <td>
-                            <submit href="">9</submit>
-                        </td>
-                        <td class="orange">
-                            <submit class="white"
-                            href="">
-                                <span>&#215;</span>
-                        </submit>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <submit href="">4</submit>
-                        </td>
-                        <td>
-                            <submit href="">5</submit>
-                        </td>
-                        <td>
-                            <submit href="">6</submit>
-                        </td>
-                        <td class="orange">
-                            <submit class="white"
-                            href="">
-                                <span>&#8722;</span>
-                        </submit>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <submit href="">1</submit>
-                        </td>
-                        <td>
-                            <submit href="">2</submit>
-                        </td>
-                        <td>
-                            <submit href="">3</submit>
-                        </td>
-                        <td class="orange">
-                            <submit class="white"
-                            href="">
-                                <span>&#43;</span>
-                        </submit>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="3">
-                            <submit href="">0</submit>
-                        </td>
-                        <td class="orange">
-                            <submit class="white"
-                             href="">
-                                <span>&#61;</span>
-
-                        </submit>
-                        </td>
-                    </tr>
-                </table>
-        </section>
+  <div class="calculator-container">
+    <div class="calculator">
+      <div class="calculator-header">
+        <h1>Calculator</h1>
+        <p>by McQuendie</p>
+      </div>
+      
+      <div class="display">
+        <div class="previous-operand">0</div>
+        <div class="current-operand">0</div>
+      </div>
+      
+      <div class="buttons">
+        <button class="btn operator" data-action="clear">AC</button>
+        <button class="btn operator" data-action="delete">DEL</button>
+        <button class="btn operator" data-action="percent">%</button>
+        <button class="btn operator" data-action="divide">÷</button>
+        
+        <button class="btn number" data-number="7">7</button>
+        <button class="btn number" data-number="8">8</button>
+        <button class="btn number" data-number="9">9</button>
+        <button class="btn operator" data-action="multiply">×</button>
+        
+        <button class="btn number" data-number="4">4</button>
+        <button class="btn number" data-number="5">5</button>
+        <button class="btn number" data-number="6">6</button>
+        <button class="btn operator" data-action="subtract">−</button>
+        
+        <button class="btn number" data-number="1">1</button>
+        <button class="btn number" data-number="2">2</button>
+        <button class="btn number" data-number="3">3</button>
+        <button class="btn operator" data-action="add">+</button>
+        
+        <button class="btn number" data-number="0">0</button>
+        <button class="btn number" data-number=".">.</button>
+        <button class="btn equals" data-action="equals">=</button>
+      </div>
     </div>
-    <br>
-    <br><br><br><br><br><br><br>
-
-
-    
-
-     <div class="wrapper">
-        <section class="screen">
-        0
-        </section>
-    
-        <section class="calc-buttons">
-            <div class="calc-button-row">
-                <button class="calc-button double ">C</button>
-                <button class="calc-button">&larr;</button>
-                <button class="calc-button">&divide;</button>
-            </div>
-            <div class="calc-button-row">
-                <button class="calc-button">7</button>
-                <button class="calc-button">8</button>
-                <button class="calc-button">9</button>
-                <button class="calc-button">&times;</button>
-            </div>
-            <div class="calc-button-row">
-                <button class="calc-button">4</button>
-                <button class="calc-button">5</button>
-                <button class="calc-button">6</button>
-                <button class="calc-button">-</button>
-            </div>
-            <div class="calc-button-row">
-                <button class="calc-button">1</button>
-                <button class="calc-button">2</button>
-                <button class="calc-button">3</button>
-                <button class="calc-button">&plus;</button>
-            </div>
-            <div class="calc-button-row">
-                <button class="calc-button triple">0</button>
-                <button class="calc-button">&equals;</button>
-            </div>
-        </section>
-    </div>
-    
+  </div>
 </body>
 </html>
