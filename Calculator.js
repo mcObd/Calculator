@@ -1,67 +1,103 @@
 
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Select display elements
+  // Get display elements
   var prevOperand = document.querySelector('.previous-operand');
   var currOperand = document.querySelector('.current-operand');
   var buttons = document.querySelectorAll('.btn, .equals');
 
-  var current = '';
-  var previous = '';
-  var operator = '';
+  // Calculator state
+  var currentValue = '';
+  var previousValue = '';
+  var currentOperator = '';
 
+  // Update the calculator display
   function updateDisplay() {
-    prevOperand.textContent = previous + ' ' + operator;
-    currOperand.textContent = current || '0';
+    prevOperand.textContent = previousValue + ' ' + currentOperator;
+    if (currentValue === '') {
+      currOperand.textContent = '0';
+    } else {
+      currOperand.textContent = currentValue;
+    }
   }
 
+  // Clear all values
   function clearAll() {
-    current = '';
-    previous = '';
-    operator = '';
+    currentValue = '';
+    previousValue = '';
+    currentOperator = '';
     updateDisplay();
   }
 
+  // Delete last character
   function deleteLast() {
-    current = current.slice(0, -1);
+    var chars = [];
+    for (var i = 0; i < currentValue.length; i++) {
+      chars.push(currentValue[i]);
+    }
+    chars.pop();
+    currentValue = '';
+    for (var j = 0; j < chars.length; j++) {
+      currentValue += chars[j];
+    }
     updateDisplay();
   }
 
+  // Add number or decimal
   function appendNumber(num) {
-    if (num === '.' && current.indexOf('.') !== -1) return;
-    current += num;
+    if (num === '.') {
+      var hasDot = false;
+      for (var i = 0; i < currentValue.length; i++) {
+        if (currentValue[i] === '.') {
+          hasDot = true;
+        }
+      }
+      if (hasDot) return;
+    }
+    currentValue += num;
     updateDisplay();
   }
 
+  // Choose operator
   function chooseOperator(op) {
-    if (current === '') return;
-    if (previous !== '') compute();
-    operator = op;
-    previous = current;
-    current = '';
+    if (currentValue === '') return;
+    if (previousValue !== '') {
+      compute();
+    }
+    currentOperator = op;
+    previousValue = currentValue;
+    currentValue = '';
     updateDisplay();
   }
 
+  // Compute result
   function compute() {
     var result = 0;
-    var prev = parseFloat(previous);
-    var curr = parseFloat(current);
+    var prev = parseFloat(previousValue);
+    var curr = parseFloat(currentValue);
     if (isNaN(prev) || isNaN(curr)) return;
-    if (operator === '+') result = prev + curr;
-    else if (operator === '−') result = prev - curr;
-    else if (operator === '×') result = prev * curr;
-    else if (operator === '÷') result = prev / curr;
-    else if (operator === '%') result = prev % curr;
-    current = result.toString();
-    previous = '';
-    operator = '';
+    if (currentOperator === '+') {
+      result = prev + curr;
+    } else if (currentOperator === '−') {
+      result = prev - curr;
+    } else if (currentOperator === '×') {
+      result = prev * curr;
+    } else if (currentOperator === '÷') {
+      result = prev / curr;
+    } else if (currentOperator === '%') {
+      result = prev % curr;
+    }
+    currentValue = result.toString();
+    previousValue = '';
+    currentOperator = '';
     updateDisplay();
   }
 
-  // Button click handler
-  buttons.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var action = btn.getAttribute('data-action');
-      var number = btn.getAttribute('data-number');
+  // Add event listeners to buttons
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function() {
+      var action = this.getAttribute('data-action');
+      var number = this.getAttribute('data-number');
       if (number !== null) {
         appendNumber(number);
       } else if (action === 'clear') {
@@ -82,8 +118,10 @@ document.addEventListener('DOMContentLoaded', function() {
         chooseOperator('%');
       }
     });
-  });
+  }
 
-  // Initialize display
+  // Start with clear display
   clearAll();
 });
+
+
